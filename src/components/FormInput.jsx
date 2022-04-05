@@ -1,12 +1,12 @@
 import "./formInput.css";
 
-function FormInput({ placeholder, setUsername, refer }) {
+function FormInput({ placeholder, refer }) {
   return (
     <div className='formInput'>
       {/* <label>Username</label> */}
       <input
         placeholder={placeholder}
-        onChange={(e) => setUsername(e.target.value)}
+        ref={refer}
       />
     </div>
   );
