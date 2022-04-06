@@ -1,31 +1,79 @@
 import "./app.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import FromInput from "./components/FormInput";
 
 function App() {
-  // const usernameRef = useRef("");
-  // const userEmailRef = useRef("");
-  // const firstNameRef = useRef("");
-  // const lastNameRef = useRef("");
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    birthday: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const inputs = [
+    {
+      id: 1,
+      name: "username",
+      type: "text",
+      placeholder: "Username",
+      label: "Username",
+    },
+    {
+      id: 2,
+      name: "email",
+      type: "text",
+      placeholder: "Email",
+      label: "Email",
+    },
+    {
+      id: 3,
+      name: "birthday",
+      type: "text",
+      placeholder: "Birthday",
+      label: "Birthday",
+    },
+    {
+      id: 4,
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      label: "Password",
+    },
+    {
+      id: 5,
+      name: "confirmPassword",
+      type: "password",
+      placeholder: "Confirm Password",
+      label: "Confirm Password",
+    },
+  ];
 
   const onFromSubmit = (e) => {
     e.preventDefault();
-    // console.log(usernameRef.current.value);
-    // console.log(userEmailRef.current.value);
-    // console.log(firstNameRef.current.value);
-    // console.log(lastNameRef.current.value);
-
     const data = new FormData(e.target);
     console.log(Object.fromEntries(data.entries()));
+  };
+
+  const onChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
     <div className='app'>
       <form onSubmit={onFromSubmit}>
-        <FromInput name='user name' placeholder='Username' />
-        <FromInput name='email' placeholder='Email' />
-        <FromInput name='First Name' placeholder='First Name' />
-        <FromInput name='Last Name' placeholder='Last Name' />
+        <h1>Register</h1>
+        {inputs.map((input) => (
+          <FromInput
+            key={input.id}
+            {...input}
+            value={values[input.name]}
+            onChange={onChange}
+          />
+        ))}
         <button>Submit</button>
       </form>
     </div>

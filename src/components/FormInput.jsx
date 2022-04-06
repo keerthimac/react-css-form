@@ -1,14 +1,12 @@
 import "./formInput.css";
 
-function FormInput({ placeholder, refer, name }) {
+function FormInput(props) {
+  const { id, label, onChange, ...inputProps } = props;
+
   return (
     <div className='formInput'>
-      {/* <label>Username</label> */}
-      <input
-        placeholder={placeholder}
-        name={name}
-        // ref={refer}
-      />
+      <label>{label}</label>
+      <input {...inputProps} onChange={onChange} />
     </div>
   );
 }
