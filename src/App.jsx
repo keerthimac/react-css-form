@@ -17,19 +17,26 @@ function App() {
       name: "username",
       type: "text",
       placeholder: "Username",
+      errorMessage:
+        "Username should be at 3-16 characters and shouldn't include any special character.",
       label: "Username",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
     },
     {
       id: 2,
       name: "email",
       type: "text",
       placeholder: "Email",
+      errorMessage: "Email should be valid.",
       label: "Email",
+      pattern: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}$",
+      required: true,
     },
     {
       id: 3,
       name: "birthday",
-      type: "text",
+      type: "date",
       placeholder: "Birthday",
       label: "Birthday",
     },
@@ -38,14 +45,20 @@ function App() {
       name: "password",
       type: "password",
       placeholder: "Password",
+      errorMessage:
+        "Username should be at least 6 characters long and at least 1 letter, 1 capital letter.",
       label: "Password",
+      required: true,
     },
     {
       id: 5,
       name: "confirmPassword",
       type: "password",
       placeholder: "Confirm Password",
+      errorMessage: "password and confirm password should be the same.",
       label: "Confirm Password",
+      pattern: values.password,
+      required: true,
     },
   ];
 
